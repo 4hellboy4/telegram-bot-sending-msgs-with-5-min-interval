@@ -20,6 +20,7 @@ async def schedule_messages() -> None:
                 text=f'/add_group <a href="{channels[i]}">{channels[i]}</a>',
                 schedule_date=schedule_time,
             )
+            print(f'send message num.{i+1}')
             # время задержки между отправкой запланированных сообщений
             await asyncio.sleep(25)
     except Exception as e:
@@ -31,8 +32,6 @@ async def get_channels() -> list[str]:
     try:
         with open('./data/channels.txt', 'r', encoding='utf-8') as f:
             channels = f.read().splitlines()
-            for elem in channels:
-                print(elem)
         return channels
     except Exception as e:
         print('Something went wrong while sending messages')
